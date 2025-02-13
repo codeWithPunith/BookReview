@@ -1,0 +1,26 @@
+<link href="/bookRating/public/styles.css" rel="stylesheet">
+
+<!-- taking input books-->
+ <% for( let book of books) { %>
+    <div class="bookRow">
+        <h2><%= book.title %></h2>
+        <div>
+         <form action="/photo" method="post">
+         <input  type="hidden" value="<%book.cover%>" id="photo" name="cover">
+            <img src="https://covers.openlibrary.org/b/isbn/<%=book.cover%>-M.jpg" alt="imag">
+         </form>
+         <script>
+               document.getElementById("photo").onsubmit();
+         </script>
+            <p><%= book.description %></p>
+        </div>
+     <div><form action="/notes" method="post">
+      
+        <button type="submit" class="my-button">Notes
+         <input type="hidden" name="bookid" value="<%= book.id %>">
+        </button>
+     </form>
+     <h6>Rating:<%= book.rating %></h6>
+    </div>
+    </div>
+ <% } %>
